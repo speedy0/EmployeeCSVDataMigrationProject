@@ -1,13 +1,12 @@
 package com.sparta.coldplay;
 
-/**
- * Hello world!
- *
- */
-public class App 
+import com.sparta.coldplay.dao.EmployeeDAO;
+
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        EmployeeDAO.populateArray("EmployeeRecords.csv");
+        System.out.println(EmployeeDAO.getEmployees().get(0).getLastName());
     }
 }
