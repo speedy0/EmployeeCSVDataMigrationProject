@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
-
     private static Connection postgresCon;
     public static Connection connectionToDB(){
         String url = PropertiesLoader.getProperty("url");
