@@ -68,4 +68,20 @@ public class EmployeeDTO {
     public Float getSalary() {
         return salary;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "empID='" + empID + '\'' +
+                ", namePrefix='" + namePrefix + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleInitial='" + middleInitial + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", dateOfJoining=" + dateOfJoining +
+                ", salary=" + salary +
+                '}';
+    }
 }

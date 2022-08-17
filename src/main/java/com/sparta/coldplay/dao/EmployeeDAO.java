@@ -9,10 +9,14 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EmployeeDAO {
     private static ArrayList<EmployeeDTO> employees = new ArrayList<>();
+    private static ArrayList<EmployeeDTO> corruptedEmployees = new ArrayList<>();
+    private static ArrayList<EmployeeDTO> duplicatedEmployees = new ArrayList<>();
+
     private static BufferedReader bufferedReader;
 
     private final Connection postgresConn;
@@ -30,6 +34,12 @@ public class EmployeeDAO {
     public static ArrayList<EmployeeDTO> getEmployees() {
         return employees;
     }
+    public static ArrayList<EmployeeDTO> getCorruptedEmployees() {
+        return corruptedEmployees;
+    }
+    public static ArrayList<EmployeeDTO> getDuplicatedEmployees() {
+        return duplicatedEmployees;
+    }
 
     public static void populateArray(String filename){
         try {
@@ -39,12 +49,42 @@ public class EmployeeDAO {
             for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
                 String[] records = line.split(",");
                 EmployeeDTO employeeDTO = new EmployeeDTO(records);
-                employees.add(employeeDTO);
+                boolean validated = validateRecord(employeeDTO);
+                boolean duplicate = checkDuplication(employeeDTO);
+                if (validated && !duplicate){
+                    employees.add(employeeDTO);
+                } else if (duplicate){
+                    duplicatedEmployees.add(employeeDTO);
+                } else{
+                    corruptedEmployees.add(employeeDTO);
+                }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static boolean checkDuplication(EmployeeDTO employee) {
+        return employees.stream()
+                .anyMatch(emp -> emp.toString() == employee.toString());
+        /*for (EmployeeDTO emp: employees){
+            if (emp.toString() == employee.toString()){
+                return true;
+            }
+        }
+        return false;*/
+    }
+
+    private static boolean validateRecord(EmployeeDTO records) {
+        if (records.getMiddleInitial().equals("FALSE") ||
+                records.getGender().equals("X") ||
+                records.getSalary() < 0 ||
+                records.getDateOfBirth().compareTo(LocalDate.now()) > 0 ||
+                records.getDateOfJoining().compareTo(LocalDate.now()) > 0){
+            return false;
+        }
+        return true;
     }
 
     private void dropTable() throws SQLException {
