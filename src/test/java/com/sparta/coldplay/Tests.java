@@ -1,2 +1,4 @@
-package com.sparta.coldplay;public class Tests {
+package com.sparta.coldplay;
+public class Tests {
+
 }

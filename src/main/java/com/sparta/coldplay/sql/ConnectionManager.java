@@ -1,2 +1,4 @@
-package com.sparta.coldplay.sql;public class ConnectionManager {
+package com.sparta.coldplay.sql;
+public class ConnectionManager {
+
 }

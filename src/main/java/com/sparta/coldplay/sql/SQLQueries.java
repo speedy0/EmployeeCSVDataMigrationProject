@@ -1,2 +1,4 @@
-package com.sparta.coldplay.sql;public interface SQLQueries {
+package com.sparta.coldplay.sql;
+public interface SQLQueries {
+
 }
