@@ -51,11 +51,8 @@ public class EmployeeDAO {
                 EmployeeDTO employeeDTO = new EmployeeDTO(records);
                 boolean validated = validateRecord(employeeDTO);
                 boolean duplicate = checkDuplication(employeeDTO);
-                if (!duplicate){
-                    if(validated)
-                        employees.add(employeeDTO);
-                    else
-                        corruptedEmployees.add(employeeDTO);
+                if (validated && !duplicate){
+                    employees.add(employeeDTO);
                 } else if (duplicate){
                     duplicatedEmployees.add(employeeDTO);
                 } else{
@@ -68,8 +65,7 @@ public class EmployeeDAO {
     }
 
     private static boolean checkDuplication(EmployeeDTO employee) {
-        return employees.stream()
-                .anyMatch(emp -> emp.toString().equals(employee.toString()));
+        return employees.stream().anyMatch(emp->emp.getEmpID().equals(employee.getEmpID()));
     }
 
     private static boolean validateRecord(EmployeeDTO records) {
@@ -77,8 +73,7 @@ public class EmployeeDAO {
                 records.getGender().equals("X") ||
                 records.getSalary() < 0 ||
                 records.getDateOfBirth().compareTo(LocalDate.now()) > 0 ||
-                records.getDateOfJoining().compareTo(LocalDate.now()) > 0 ||
-                employees.stream().anyMatch(emp->emp.getEmpID().equals(records.getEmpID()))){
+                records.getDateOfJoining().compareTo(LocalDate.now()) > 0){
             return false;
         }
         return true;
