@@ -13,7 +13,7 @@ public class EmployeeDTO {
     private String email;
     private LocalDate dateOfBirth;
     private LocalDate dateOfJoining;
-    private Float salary;
+    private Integer salary;
 
     public EmployeeDTO( String[] csvInput) {
         empID = csvInput[0];
@@ -25,7 +25,7 @@ public class EmployeeDTO {
         email = csvInput[6];
         this.dateOfBirth = LocalDate.parse(csvInput[7], DateTimeFormatter.ofPattern("M/d/uuuu"));
         this.dateOfJoining= LocalDate.parse(csvInput[8], DateTimeFormatter.ofPattern("M/d/uuuu"));
-        this.salary = Float.valueOf(csvInput[9]);
+        this.salary = Integer.valueOf(csvInput[9]);
     }
 
 
