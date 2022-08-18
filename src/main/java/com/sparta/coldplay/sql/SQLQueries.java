@@ -8,6 +8,8 @@ public interface SQLQueries {
 
     public static final String TRUNCATE_TABLE = "TRUNCATE  public.employees_db";
 
+    public static final String COUNT = "SELECT count(*) FROM public.employee_db";
+
     public static final String CREATE_TABLE = "CREATE TABLE public.employees_db (" +
             "employee_id VARCHAR(10),\n" +
             "title VARCHAR(255),\n" +
