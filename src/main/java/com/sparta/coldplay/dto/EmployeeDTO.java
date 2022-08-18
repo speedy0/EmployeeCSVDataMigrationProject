@@ -65,7 +65,7 @@ public class EmployeeDTO {
         return dateOfJoining;
     }
 
-    public Float getSalary() {
+    public int getSalary() {
         return salary;
     }
 
