@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class EmployeeDAO {
     private static ArrayList<EmployeeDTO> employees = new ArrayList<>();
