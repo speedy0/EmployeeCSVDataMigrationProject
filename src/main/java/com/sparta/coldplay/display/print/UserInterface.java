@@ -21,4 +21,16 @@ public class UserInterface {
             System.out.println(EmployeeDAO.getCorruptedEmployees().get(i));
         }
     }
+
+    public static void printLengthOfEmployees(){
+        System.out.println(EmployeeDAO.getEmployees().size());
+    }
+
+    public static void printLengthOfCorruptedEmployees(){
+        System.out.println(EmployeeDAO.getCorruptedEmployees().size());
+    }
+
+    public static void printLengthOfDuplicateEmployees(){
+        System.out.println(EmployeeDAO.getDuplicatedEmployees().size());
+    }
 }
