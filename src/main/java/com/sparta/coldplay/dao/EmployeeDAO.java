@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class EmployeeDAO {
     private static ArrayList<EmployeeDTO> employees = new ArrayList<>();
@@ -51,15 +52,17 @@ public class EmployeeDAO {
                 EmployeeDTO employeeDTO = new EmployeeDTO(records);
                 boolean validated = validateRecord(employeeDTO);
                 boolean duplicate = checkDuplication(employeeDTO);
-                if (validated && !duplicate){
-                    employees.add(employeeDTO);
+                if (!duplicate){
+                    if(validated)
+                        employees.add(employeeDTO);
+                    else
+                        corruptedEmployees.add(employeeDTO);
                 } else if (duplicate){
                     duplicatedEmployees.add(employeeDTO);
                 } else{
                     corruptedEmployees.add(employeeDTO);
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,13 +70,7 @@ public class EmployeeDAO {
 
     private static boolean checkDuplication(EmployeeDTO employee) {
         return employees.stream()
-                .anyMatch(emp -> emp.toString() == employee.toString());
-        /*for (EmployeeDTO emp: employees){
-            if (emp.toString() == employee.toString()){
-                return true;
-            }
-        }
-        return false;*/
+                .anyMatch(emp -> emp.toString().equals(employee.toString()));
     }
 
     private static boolean validateRecord(EmployeeDTO records) {
@@ -81,7 +78,8 @@ public class EmployeeDAO {
                 records.getGender().equals("X") ||
                 records.getSalary() < 0 ||
                 records.getDateOfBirth().compareTo(LocalDate.now()) > 0 ||
-                records.getDateOfJoining().compareTo(LocalDate.now()) > 0){
+                records.getDateOfJoining().compareTo(LocalDate.now()) > 0 ||
+                employees.stream().anyMatch(emp->emp.getEmpID().equals(records.getEmpID()))){
             return false;
         }
         return true;
