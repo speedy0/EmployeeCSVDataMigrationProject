@@ -12,12 +12,12 @@ public interface SQLQueries {
 
     public static final String CREATE_TABLE = "CREATE TABLE public.employees_db (" +
             "employee_id VARCHAR(10),\n" +
-            "title VARCHAR(255),\n" +
+            "title VARCHAR(10),\n" +
             "first_name VARCHAR(255),\n" +
-            "middle_initial VARCHAR(10),\n" +
+            "middle_initial VARCHAR(1),\n" +
             "last_name VARCHAR(255),\n" +
-            "gender VARCHAR(10),\n" +
-            "email VARCHAR(50),\n" +
+            "gender VARCHAR(1),\n" +
+            "email VARCHAR(250),\n" +
             "birth_date DATE,\n" +
             "join_date DATE,\n" +
             "salary INTEGER" +

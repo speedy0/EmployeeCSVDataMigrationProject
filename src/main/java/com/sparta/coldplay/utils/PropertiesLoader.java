@@ -7,7 +7,7 @@ public class PropertiesLoader {
     public static String getProperty(String key){
         Properties properties = new Properties();
         try {
-            properties.load(new FileReader("database.properties"));
+            properties.load(new FileReader("src/main/resources/database.properties"));
         }catch (IOException e){
             e.printStackTrace();
         }

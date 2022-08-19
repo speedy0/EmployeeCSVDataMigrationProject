@@ -14,10 +14,7 @@ public class EmployeeLoader {
 
         Connection postgresConn = ConnectionManager.connectionToDB();
         EmployeeDAO employeeDAO = new EmployeeDAO(postgresConn);
-
-        //System.out.println("Size: " + EmployeeDAO.getEmployees().size());
-
-        employeeDAO.truncateTable();
+        employeeDAO.createTable();
 
         double start = System.currentTimeMillis();
         InsertEmployees.insertEmployees(employeeDAO);
@@ -26,6 +23,5 @@ public class EmployeeLoader {
         System.out.println(Timer.printTimer(start, finish));
 
         ConnectionManager.closeConnection();
-
     }
 }
