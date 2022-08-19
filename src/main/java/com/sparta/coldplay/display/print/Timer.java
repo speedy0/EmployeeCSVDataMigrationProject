@@ -10,6 +10,6 @@ public class Timer {
 
     private static double calculate(double start, double end){
         double totalTimeTaken = end - start;
-        return totalTimeTaken / 1000000;
+        return totalTimeTaken / 1000;
     }
 }
