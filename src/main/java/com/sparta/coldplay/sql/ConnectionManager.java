@@ -12,6 +12,7 @@ public class ConnectionManager {
         String password = PropertiesLoader.getProperty("password");
         try {
             postgresCon = DriverManager.getConnection(url, userName, password);
+            postgresCon.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
