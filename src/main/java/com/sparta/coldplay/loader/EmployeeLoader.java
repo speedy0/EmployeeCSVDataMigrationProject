@@ -10,7 +10,7 @@ import java.sql.Connection;
 
 public class EmployeeLoader {
     public static void start(){
-        EmployeeRecords.populateArray("src/main/resources/EmployeeRecords.csv");
+        EmployeeRecords.populateArray("src/main/resources/EmployeeRecordsLarge.csv");
 
         Connection postgresConn = ConnectionManager.connectionToDB();
         EmployeeDAO employeeDAO = new EmployeeDAO(postgresConn);
