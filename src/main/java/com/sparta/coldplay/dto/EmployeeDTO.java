@@ -23,8 +23,8 @@ public class EmployeeDTO {
         lastName = csvInput[4];
         gender = csvInput[5];
         email = csvInput[6];
-        this.dateOfBirth = LocalDate.parse(csvInput[7], DateTimeFormatter.ofPattern("M/d/uuuu"));
-        this.dateOfJoining= LocalDate.parse(csvInput[8], DateTimeFormatter.ofPattern("M/d/uuuu"));
+        this.dateOfBirth = LocalDate.parse(csvInput[7], DateTimeFormatter.ofPattern("d/M/uuuu"));
+        this.dateOfJoining= LocalDate.parse(csvInput[8], DateTimeFormatter.ofPattern("d/M/uuuu"));
         this.salary = Integer.valueOf(csvInput[9]);
     }
 

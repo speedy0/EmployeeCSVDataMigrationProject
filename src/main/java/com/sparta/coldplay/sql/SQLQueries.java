@@ -4,7 +4,7 @@ public interface SQLQueries {
     public static final String SELECT_ALL = "SELECT * FROM public.employees_db";
     public static final String INSERT_INTO_DB = "INSERT INTO public.employees_db (employee_id, title, first_name, middle_initial, last_name, gender, email, birth_date, join_date, salary) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-    public static final String DROP_TABLE = "DROP TABLE public.employees_db";
+    public static final String DROP_TABLE = "DROP TABLE IF EXISTS public.employees_db";
 
     public static final String TRUNCATE_TABLE = "TRUNCATE  public.employees_db";
 
