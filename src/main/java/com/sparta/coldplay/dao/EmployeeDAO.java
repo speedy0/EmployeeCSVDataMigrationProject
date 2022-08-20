@@ -88,7 +88,7 @@ public class EmployeeDAO {
             preparedStatement.setString(5, last_name);
             preparedStatement.setString(6, gender);
             preparedStatement.setString(7, email);
-            preparedStatement.setDate(8, java.sql.Date.valueOf(date_of_birth));
+            preparedStatement.setDate(8, Date.valueOf(date_of_birth));
             preparedStatement.setDate(9, Date.valueOf(date_of_joining));
             preparedStatement.setInt(10, salary);
             preparedStatement.execute();
