@@ -1,6 +1,7 @@
 package com.sparta.coldplay.dao;
 
 import com.sparta.coldplay.dto.EmployeeDTO;
+import com.sparta.coldplay.logger.LoggerSystem;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -28,11 +29,13 @@ public class EmployeeRecords {
     }
 
     public static boolean validateRecord(EmployeeDTO records) {
+        LoggerSystem.getMessage(1, "Validating records of employees populated from the CSV file.");
         if (records.getMiddleInitial().equals("FALSE") ||
                 records.getGender().equals("X") ||
                 records.getSalary() < 0 ||
                 records.getDateOfBirth().compareTo(LocalDate.now()) > 0 ||
                 records.getDateOfJoining().compareTo(LocalDate.now()) > 0){
+            LoggerSystem.getMessage(1, "Corrupted entry was found and has been placed in Corrupted Array.");
             return false;
         }
         return true;
@@ -40,6 +43,7 @@ public class EmployeeRecords {
 
     public static void populateArray(String filename){
         try {
+            LoggerSystem.getMessage(1, "Populating the array from the csv file.");
             FileReader fileReader = new FileReader(filename);
             bufferedReader = new BufferedReader(fileReader);
             bufferedReader.readLine();
@@ -58,6 +62,7 @@ public class EmployeeRecords {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            LoggerSystem.getMessage(2, e.getMessage());
         }
     }
 }
