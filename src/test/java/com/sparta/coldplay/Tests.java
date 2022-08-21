@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Tests {
 
     FileReader fileReader;
-    String filename = "EmployeeRecords.csv";
+    String filename = "src/main/resources/EmployeeRecordsLarge.csv";
     BufferedReader bufferedReader;
     String[] records;
     EmployeeDTO employeeDTO;
@@ -38,7 +38,7 @@ public class Tests {
     @Test
     @DisplayName("Get the name of the first employee")
     public void getName(){
-        Assertions.assertEquals(employees.get(0).getFirstName(), "Serafina");
+        Assertions.assertEquals(employees.get(0).getFirstName(), "Lavon");
     }
 
     @Test

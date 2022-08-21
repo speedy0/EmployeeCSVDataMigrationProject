@@ -29,10 +29,6 @@ public class EmployeeLoader {
         InsertEmployees.insertEmployees(employeeDAO);
         double finish = System.currentTimeMillis();
 
-        System.out.println(EmployeeRecords.getEmployees().size());
-        System.out.println(EmployeeRecords.getDuplicatedEmployees().size());
-        System.out.println(EmployeeRecords.getCorruptedEmployees().size());
-
         System.out.println(Timer.printTimer(start, finish));
 
         LoggerSystem.getMessage(1, "Closing the connection to the database.");
